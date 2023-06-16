@@ -10,7 +10,7 @@ app.use(express.json());
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.czlkgnu.mongodb.net/?retryWrites=true&w=majority`;
-
+console.log(uri);
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -29,6 +29,25 @@ async function run() {
     const instructorCollection = client
       .db("martialArts")
       .collection("instructor");
+
+      
+      app.get("/classes",async (req, res) => {
+        const result= await classesCollection.find().toArray()
+        res.send(result)
+      });
+      app.get("/top-classes",async (req, res) => {
+        const result= await classesCollection.find().limit(6).toArray()
+        res.send(result)
+      });
+
+      app.get("/instructors",async (req, res) => {
+        const result= await instructorCollection.find().toArray()
+        res.send(result)
+      });
+      app.get("/top-instructors",async (req, res) => {
+        const result= await instructorCollection.find().limit(6).toArray()
+        res.send(result)
+      });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
