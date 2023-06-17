@@ -1,5 +1,4 @@
 
-
 require("dotenv").config()
 const express = require("express")
 const port = process.env.PORT || 3000
@@ -44,13 +43,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
 
-        //  client.connect();
-        const classesCollection = client.db("martialArts").collection("classes");
-        const instructorCollection = client.db("martialArts").collection("instructor");
-        const usersCollection = client.db("martialArts").collection("users");
-        const seletedCollection = client.db("martialArts").collection("seleted_classes");
-        const paymentsCollection = client.db("martialArts").collection("payments");
-        const enrolledCollection = client.db("martialArts").collection("enrolled_classes");
+
 
 
         // verify admin 
@@ -356,7 +349,6 @@ async function run() {
     }
 }
 run().catch(console.dir);
-
 
 
 app.get("/", (req, res) => {
