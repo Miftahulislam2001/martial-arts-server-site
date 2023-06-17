@@ -93,7 +93,7 @@ async function run() {
 
     // checking authorization
     app.get("/authorization", async (req, res) => {
-   
+      const email = req?.query?.email;
       const user = await usersCollection.findOne({ email: email });
       if (user) {
         res.send({ role: user?.role });
