@@ -7,8 +7,7 @@ const cors = require("cors");
 // const stripe = require("stripe")(process.env.PAYMENT_SECRET_KEY)
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-app.use(cors());
-app.use(express.json());
+
 // verify jwt token
 const verifyToken = (req, res, next) => {
   const authorization = req.headers.authorization;
